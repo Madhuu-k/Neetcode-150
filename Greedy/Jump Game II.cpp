@@ -3,18 +3,18 @@
 class Solution {
 public:
     int jump(vector<int>& nums) {
-        int totalJumps = 0;
-        int current = 0;
-        int farthest = 0;
+        int n = nums.size();
+        if(n == 1) return 0;
 
-        for(int i = 0; i < nums.size() - 1; i++){
+        int jumps = 0, currEnd = 0, farthest = 0;
+        for(int i = 0; i < n - 1; i++){
             farthest = max(farthest, i + nums[i]);
-            if(i == current) {
-                totalJumps++;
-                current = farthest;
+            if(i == currEnd){
+                jumps++;
+                currEnd = farthest;
+                if(currEnd >= n - 1) break;
             }
         }
-
-        return totalJumps;
+        return jumps;
     }
 };
